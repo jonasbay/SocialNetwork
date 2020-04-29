@@ -1,8 +1,50 @@
-﻿@{
+﻿@model SocialNetwork.Models.UserViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Username
+            </th>
+            <th>
+                Age
+            </th>
+            <th>
+                Gender
+            </th>
+            <th>
+                In a relationship
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var l in Model.users)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => l.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => l.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => l.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => l.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => l.InRelationship)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
 </div>

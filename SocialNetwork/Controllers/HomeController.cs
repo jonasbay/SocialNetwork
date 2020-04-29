@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SocialNetwork.Models;
+using SocialNetwork.Services;
 
 namespace SocialNetwork.Controllers
 {
@@ -16,11 +17,17 @@ namespace SocialNetwork.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+
         }
 
         public IActionResult Index()
         {
-            return View();
+            var socialNetwork = new SocialNetworkService();
+            var etellerandet = new UserViewModel();
+            etellerandet.users = socialNetwork.Get();
+            //List<User> list = socialNetwork.Get();
+
+            return View(etellerandet);
         }
 
         public IActionResult Privacy()
