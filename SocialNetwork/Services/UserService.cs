@@ -7,11 +7,11 @@ using SocialNetwork.Models;
 
 namespace SocialNetwork.Services
 {
-    public class SocialNetworkService
+    public class UserService
     {
         private readonly IMongoCollection<User> _users;
 
-        public SocialNetworkService()
+        public UserService()
         {
             var client = new MongoClient("mongodb://localhost:27017");
             var database = client.GetDatabase("SocialNetworkDb");

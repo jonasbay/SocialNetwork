@@ -22,7 +22,7 @@ namespace SocialNetwork.Controllers
 
         public IActionResult Index()
         {
-            var socialNetwork = new SocialNetworkService();
+            var socialNetwork = new UserService();
             var etellerandet = new UserViewModel();
             etellerandet.users = socialNetwork.Get();
             //List<User> list = socialNetwork.Get();
