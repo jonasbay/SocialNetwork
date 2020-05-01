@@ -8,5 +8,6 @@ namespace SocialNetwork.Models
     public class UserViewModel
     {
         public List<User> users { get; set; }
+        public List<Post> posts { get; set; }
     }
 }

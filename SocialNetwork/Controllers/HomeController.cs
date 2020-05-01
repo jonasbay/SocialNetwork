@@ -22,12 +22,15 @@ namespace SocialNetwork.Controllers
 
         public IActionResult Index()
         {
-            var socialNetwork = new UserService();
-            var etellerandet = new UserViewModel();
-            etellerandet.users = socialNetwork.Get();
-            //List<User> list = socialNetwork.Get();
+            var userService = new UserService();
+            var postService = new PostService();
+            var userViewModel = new UserViewModel
+            {
+                users = userService.Get(),
+                posts = postService.Get()
+            };
 
-            return View(etellerandet);
+            return View(userViewModel);
         }
 
         public IActionResult Privacy()
