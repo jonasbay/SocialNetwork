@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using SocialNetwork.Data;
-using SocialNetwork.Models;
 using SocialNetwork.Services;
 
 namespace SocialNetwork.Controllers
@@ -21,135 +18,84 @@ namespace SocialNetwork.Controllers
         }
 
         // GET: Posts
-        public async Task<IActionResult> Index()
+        public ActionResult Index()
         {
-            var postService = new PostService();
-            var userViewModel = new UserViewModel
-            {
-                posts = postService.Get()
-            };
-            return View();
+            return View(_postService.Get());
         }
 
         // GET: Posts/Details/5
-        public async Task<IActionResult> Details(string id)
+        public ActionResult Details(int id)
         {
-            //if (id == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //var post = await _context.Post
-            //    .FirstOrDefaultAsync(m => m.Id == id);
-            //if (post == null)
-            //{
-            //    return NotFound();
-            //}
-
-            return View(/*post*/);
+            return View();
         }
 
         // GET: Posts/Create
-        public IActionResult Create()
+        public ActionResult Create()
         {
             return View();
         }
 
         // POST: Posts/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Text,Likes,ImageUrl,CreatedBy")] Post post)
+        public ActionResult Create(IFormCollection collection)
         {
-            _postService.Create(post);
+            try
+            {
+                // TODO: Add insert logic here
 
-            return CreatedAtRoute("GetPost", new {id = post.Id.ToString()}, post);
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // GET: Posts/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public ActionResult Edit(int id)
         {
-            //if (id == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //var post = await _context.Post.FindAsync(id);
-            //if (post == null)
-            //{
-            //    return NotFound();
-            //}
-            return View(/*post*/);
+            return View();
         }
 
         // POST: Posts/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Text,Likes,ImageUrl,CreatedBy")] Post post)
+        public ActionResult Edit(int id, IFormCollection collection)
         {
-            //if (id != post.Id)
-            //{
-            //    return NotFound();
-            //}
+            try
+            {
+                // TODO: Add update logic here
 
-            //if (ModelState.IsValid)
-            //{
-            //    try
-            //    {
-            //        _context.Update(post);
-            //        await _context.SaveChangesAsync();
-            //    }
-            //    catch (DbUpdateConcurrencyException)
-            //    {
-            //        if (!PostExists(post.Id))
-            //        {
-            //            return NotFound();
-            //        }
-            //        else
-            //        {
-            //            throw;
-            //        }
-            //    }
-            //    return RedirectToAction(nameof(Index));
-            //}
-            return View(/*post*/);
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // GET: Posts/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public ActionResult Delete(int id)
         {
-            //if (id == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //var post = await _context.Post
-            //    .FirstOrDefaultAsync(m => m.Id == id);
-            //if (post == null)
-            //{
-            //    return NotFound();
-            //}
-
-            return View(/*post*/);
+            return View();
         }
 
         // POST: Posts/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public ActionResult Delete(int id, IFormCollection collection)
         {
-            //var post = await _context.Post.FindAsync(id);
-            //_context.Post.Remove(post);
-            //await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+            try
+            {
+                // TODO: Add delete logic here
 
-        //private bool PostExists(string id)
-        //{
-        //    return _context.Post.Any(e => e.Id == id);
-        //}
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
     }
 }
