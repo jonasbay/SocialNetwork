@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using SocialNetwork.Data;
+using SocialNetwork.Services;
 
 namespace SocialNetwork
 {
@@ -28,10 +28,7 @@ namespace SocialNetwork
             services.AddControllersWithViews();
             services.AddMvc();
 
-
-            services.AddDbContext<SocialNetworkContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("SocialNetworkContext")));
-
+            services.AddScoped<PostService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
