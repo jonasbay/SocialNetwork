@@ -9,87 +9,63 @@ using SocialNetwork.Services;
 
 namespace SocialNetwork.Controllers
 {
-    public class PostsController : Controller
+    public class CommentController : Controller
     {
+
+        private readonly CommentService _commentService;
         private readonly PostService _postService;
 
-        public PostsController(PostService postService)
+        public CommentController(CommentService commentService, PostService postService)
         {
+            _commentService = commentService;
             _postService = postService;
         }
 
-        // GET: Posts
+        // GET: Comment
         public ActionResult Index()
         {
             var vm = new UserViewModel();
-            vm.posts = _postService.Get();
+            vm.comments = _commentService.Get();
             return View(vm);
+
+            //return View("../Posts/Index");
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Post post)
+        public IActionResult Create(string id, Comment comment)
         {
             if (ModelState.IsValid)
             {
-                _postService.Create(post);
-                post.Likes = 0;
+                comment.PostId = id;
+                _commentService.Create(comment);
                 return RedirectToAction(nameof(Index));
             }
-            return View(post);
+            return View(comment);
         }
 
-        // GET: Posts/Create
+        // GET: Comment/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        public ActionResult Like()
-        {
-            return View("Index");
-        }
 
-        [HttpPost]
-        public IActionResult Like(string id, Post postIn)
-        {
-            var post = _postService.Get(id);
-
-            if (post == null)
-            {
-                return NotFound();
-            }
-
-            post.Likes++;
-            _postService.Update(id, postIn);
-
-            return NoContent();
-
-        }
-
-
-        // GET: Posts/Delete/5
+        // GET: Comment/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Posts/Delete/5
+        // POST: Comment/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(string id, IFormCollection collection)
+        public ActionResult Delete(int id, IFormCollection collection)
         {
             try
             {
-                var post = _postService.Get(id);
-
-                if (post == null)
-                {
-                    return NotFound();
-                }
-
-                _postService.Remove(post.Id);
-
+                // TODO: Add delete logic here
 
                 return RedirectToAction(nameof(Index));
             }

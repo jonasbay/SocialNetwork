@@ -23,11 +23,11 @@ namespace SocialNetwork.Controllers
         public IActionResult Index()
         {
             var userService = new UserService();
-            var postService = new PostService();
+            //var postService = new PostService();
             var userViewModel = new UserViewModel
             {
                 users = userService.Get(),
-                posts = postService.Get()
+                //posts = postService.Get()
             };
 
             return View(userViewModel);

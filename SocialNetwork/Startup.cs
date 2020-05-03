@@ -29,6 +29,8 @@ namespace SocialNetwork
             services.AddMvc();
 
             services.AddScoped<PostService>();
+            services.AddScoped<UserService>();
+            services.AddScoped<CommentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

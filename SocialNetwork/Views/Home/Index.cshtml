@@ -45,23 +45,6 @@
             </td>
         </tr>
     }
-    @foreach (var l in Model.posts)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => l.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => l.Text)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => l.CreatedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => l.ImageUrl)
-            </td>
-        </tr>
-    }
     </tbody>
 </table>
 </div>
