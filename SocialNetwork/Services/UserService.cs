@@ -21,5 +21,8 @@ namespace SocialNetwork.Services
 
         public List<User> Get() =>
             _users.Find(user => true).ToList();
+
+        public void Update(string id, User userIn) =>
+            _users.ReplaceOne(u => u.Id == id, userIn);
     }
 }

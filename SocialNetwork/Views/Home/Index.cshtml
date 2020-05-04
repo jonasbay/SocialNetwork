@@ -22,6 +22,7 @@
             <th>
                 In a relationship
             </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -42,6 +43,18 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => l.InRelationship)
+            </td>
+            <td>
+                @Html.ActionLink(
+                    linkText: "Create Cirle",
+                    actionName: "CreateCircle",
+                    controllerName: "Home",
+                    routeValues: new
+                    {
+                        id = l.Id
+                    },
+                    htmlAttributes: null
+                    )
             </td>
         </tr>
     }

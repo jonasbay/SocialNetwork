@@ -13,11 +13,13 @@ namespace SocialNetwork.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly UserService _userService;
 
-        public HomeController(ILogger<HomeController> logger)
+
+        public HomeController(ILogger<HomeController> logger, UserService userService)
         {
             _logger = logger;
-
+            _userService = userService;
         }
 
         public IActionResult Index()
@@ -33,10 +35,36 @@ namespace SocialNetwork.Controllers
             return View(userViewModel);
         }
 
-        public IActionResult Privacy()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateCircle(string id, User user)
+        {
+            if (ModelState.IsValid)
+            {
+                var newCircle = new Circle()
+                {
+                    Name = "Randi",
+                };
+
+                newCircle.UserIds.Add(id); // UserId not set to instance of object
+
+                user.Circles.Add(newCircle);
+
+                _userService.Update(id, user);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(user);
+        } /// <summary>
+        /// Det her lort virker ikke
+        /// </summary>
+        /// <returns> Sprøg Henrik om hjælp</returns>
+
+        public IActionResult CreateCircle()
         {
             return View();
         }
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

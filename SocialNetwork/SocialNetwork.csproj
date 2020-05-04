@@ -17,6 +17,10 @@
     <PackageReference Include="MongoDB.Driver.Core" Version="2.10.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Circle\" />
+  </ItemGroup>
+
 
 
 </Project>

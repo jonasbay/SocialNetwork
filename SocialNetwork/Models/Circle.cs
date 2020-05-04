@@ -7,9 +7,7 @@ namespace SocialNetwork.Models
 {
     public class Circle
     {
-        public int CircleId { get; set; }
-        public string CircleName { get; set; }
-
-        public int UserId { get; set; }
+        public string Name { get; set; }
+        public List<string> UserIds { get; set; }
     }
 }
