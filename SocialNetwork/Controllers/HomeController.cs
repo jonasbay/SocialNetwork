@@ -37,23 +37,27 @@ namespace SocialNetwork.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateCircle(string id, User user)
+        public IActionResult CreateCircle(string id, string _name)
         {
             if (ModelState.IsValid)
             {
                 var newCircle = new Circle()
                 {
-                    Name = "Randi",
+                    Name = _name,
+                    UserIds = new List<string>()
                 };
 
-                newCircle.UserIds.Add(id); // UserId not set to instance of object
+                var user = _userService.Get(id);
+
+
+                //newCircle.UserIds.Add(id); // UserId not set to instance of object
 
                 user.Circles.Add(newCircle);
 
                 _userService.Update(id, user);
                 return RedirectToAction(nameof(Index));
             }
-            return View(user);
+            return View("Index");
         } /// <summary>
         /// Det her lort virker ikke
         /// </summary>

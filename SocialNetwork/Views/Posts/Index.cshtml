@@ -53,6 +53,8 @@
                 
                 <td>
                     @Html.ActionLink("Like", "Like", new { id = item.Id }) |
+                    
+
 
 
                     @Html.ActionLink(
@@ -61,7 +63,7 @@
                         controllerName: "Comment",
                         routeValues: new
                         {
-                            id = item.Id
+                            postId = item.Id
                         },
                         htmlAttributes: null
                         ) |

@@ -34,11 +34,10 @@ namespace SocialNetwork.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(string id, Comment comment)
+        public IActionResult Create(Comment comment)
         {
             if (ModelState.IsValid)
             {
-                comment.PostId = id;
                 _commentService.Create(comment);
                 return RedirectToAction(nameof(Index));
             }
@@ -46,9 +45,11 @@ namespace SocialNetwork.Controllers
         }
 
         // GET: Comment/Create
-        public ActionResult Create()
+        public ActionResult Create(string postId)
         {
-            return View();
+            var newComment = new Comment();
+            newComment.PostId = postId;
+            return View(newComment);
         }
 
 

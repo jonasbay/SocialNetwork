@@ -45,13 +45,7 @@ namespace SocialNetwork.Controllers
             return View();
         }
 
-        public ActionResult Like()
-        {
-            return View("Index");
-        }
-
-        [HttpPost]
-        public IActionResult Like(string id, Post postIn)
+        public ActionResult Like(string id)
         {
             var post = _postService.Get(id);
 
@@ -61,11 +55,26 @@ namespace SocialNetwork.Controllers
             }
 
             post.Likes++;
-            _postService.Update(id, postIn);
+            _postService.Update(id, post);
 
-            return NoContent();
-
+            return RedirectToAction(nameof(Index));
         }
+
+        //[HttpPost]
+        //public IActionResult Like(string id)
+        //{
+        //    var post = _postService.Get(id);
+
+        //    if (post == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    post.Likes++;
+        //    _postService.Update(id, post);
+
+        //    return RedirectToAction(nameof(Index));
+        //}
 
 
         // GET: Posts/Delete/5

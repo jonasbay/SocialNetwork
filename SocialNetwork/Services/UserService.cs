@@ -22,6 +22,9 @@ namespace SocialNetwork.Services
         public List<User> Get() =>
             _users.Find(user => true).ToList();
 
+        public User Get(string id) =>
+            _users.Find<User>(user => user.Id == id).FirstOrDefault();
+
         public void Update(string id, User userIn) =>
             _users.ReplaceOne(u => u.Id == id, userIn);
     }

@@ -12,23 +12,23 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
+            <div class="form-group" display="none">
+                <label asp-for="PostId" class="control-label"></label>
+                <input value="@Model.PostId" asp-for="PostId" class="form-control" />
+                <span asp-validation-for="PostId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Text" class="control-label"></label>
-                <input asp-for="Text" class="form-control" />
+                <input asp-for="Text" class="form-control"/>
                 <span asp-validation-for="Text" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ComCreatedBy" class="control-label"></label>
-                <input asp-for="ComCreatedBy" class="form-control" />
+                <input asp-for="ComCreatedBy" class="form-control"/>
                 <span asp-validation-for="ComCreatedBy" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary"/>
             </div>
         </form>
     </div>
