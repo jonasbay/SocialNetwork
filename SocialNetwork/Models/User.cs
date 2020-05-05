@@ -17,6 +17,10 @@ namespace SocialNetwork.Models
         public int Age { get; set; }
         public string Gender { get; set; }
         public bool InRelationship { get; set; }
+        public string UserToFollow { get; set; }
+        public string UserToAddToCircle { get; set; }
+        public string CircleName { get; set; }
+        public List<string> FollowingUserIds { get; set; }
         public List<Circle> Circles { get; set; }
     }
 }

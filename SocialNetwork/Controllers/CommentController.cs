@@ -24,7 +24,7 @@ namespace SocialNetwork.Controllers
         // GET: Comment
         public ActionResult Index()
         {
-            var vm = new UserViewModel();
+            var vm = new SocialNetworkViewModel();
             vm.comments = _commentService.Get();
             return View(vm);
 

@@ -1,4 +1,4 @@
-﻿@model SocialNetwork.Models.UserViewModel
+﻿@model SocialNetwork.Models.SocialNetworkViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -48,6 +48,26 @@
                 @Html.ActionLink(
                     linkText: "Create Cirle",
                     actionName: "CreateCircle",
+                    controllerName: "Home",
+                    routeValues: new
+                    {
+                        id = l.Id
+                    },
+                    htmlAttributes: null
+                    )
+                @Html.ActionLink(
+                    linkText: "View Cirles",
+                    actionName: "ViewCircles",
+                    controllerName: "Home",
+                    routeValues: new
+                    {
+                        id = l.Id
+                    },
+                    htmlAttributes: null
+                    )
+                @Html.ActionLink(
+                    linkText: "Follow a user",
+                    actionName: "FollowUser",
                     controllerName: "Home",
                     routeValues: new
                     {

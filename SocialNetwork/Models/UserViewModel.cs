@@ -7,9 +7,7 @@ namespace SocialNetwork.Models
 {
     public class UserViewModel
     {
-        public List<User> users { get; set; }
-        public List<Post> posts { get; set; }
-        public List<Comment> comments { get; set; }
-
+        public string UserId { get; set; }
+        public List<Circle> Circles { get; set; }
     }
 }

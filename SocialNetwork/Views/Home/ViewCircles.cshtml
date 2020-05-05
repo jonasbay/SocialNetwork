@@ -1,0 +1,35 @@
+﻿@model SocialNetwork.Models.UserViewModel
+
+@{
+    ViewData["Title"] = "ViewCircles";
+}
+
+<h1>ViewCircles</h1>
+
+<p>
+    <a>Viewing circles for user: @Model.UserId</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Circles) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditCircle", new { id = Model.UserId, circleName=item.Name }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

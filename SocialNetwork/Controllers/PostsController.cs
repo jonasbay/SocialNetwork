@@ -21,7 +21,7 @@ namespace SocialNetwork.Controllers
         // GET: Posts
         public ActionResult Index()
         {
-            var vm = new UserViewModel();
+            var vm = new SocialNetworkViewModel();
             vm.posts = _postService.Get();
             return View(vm);
         }
