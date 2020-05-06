@@ -26,5 +26,8 @@ namespace SocialNetwork.Models
         [BsonElement("CreatedBy")]
         [Required]
         public string CreatedBy { get; set; }
+
+        public Circle PCircle { get; set; }
+        public string PostToCircle { get; set; }
     }
 }

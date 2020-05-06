@@ -1,0 +1,58 @@
+﻿@model SocialNetwork.Models.FeedViewModel
+
+@{
+    ViewData["Title"] = "Feed";
+}
+
+    <h1>@Model.user.UserName's Wall</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Post Id
+            </th>
+            <th>
+                Text
+            </th>
+            <th>
+                Likes
+            </th>
+            <th>
+                ImageUrl
+            </th>
+            <th>
+                CreatedBy
+            </th>
+            <th>
+                PostToCircle
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.posts)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Text)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Likes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImageUrl)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostToCircle)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

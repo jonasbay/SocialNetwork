@@ -54,7 +54,7 @@
                         id = l.Id
                     },
                     htmlAttributes: null
-                    )
+                    ) |
                 @Html.ActionLink(
                     linkText: "View Cirles",
                     actionName: "ViewCircles",
@@ -64,10 +64,41 @@
                         id = l.Id
                     },
                     htmlAttributes: null
-                    )
+                    ) |
                 @Html.ActionLink(
                     linkText: "Follow a user",
                     actionName: "FollowUser",
+                    controllerName: "Home",
+                    routeValues: new
+                    {
+                        id = l.Id
+                    },
+                    htmlAttributes: null
+                    ) |
+                @Html.ActionLink(
+                    linkText: "Create Post",
+                    actionName: "Create",
+                    controllerName: "Posts",
+                    routeValues: new
+                    {
+                        createdBy = l.Id
+                    },
+                    htmlAttributes: null
+                    ) |
+                @Html.ActionLink(
+                    linkText: "Feed",
+                    actionName: "Feed",
+                    controllerName: "Home",
+                    routeValues: new
+                    {
+                        id = l.Id
+                    },
+                    htmlAttributes: null
+                    )
+                |
+                @Html.ActionLink(
+                    linkText: "ViewAs",
+                    actionName: "ViewAs",
                     controllerName: "Home",
                     routeValues: new
                     {

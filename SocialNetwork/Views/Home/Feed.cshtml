@@ -1,0 +1,82 @@
+﻿@model SocialNetwork.Models.FeedViewModel
+
+@{
+    ViewData["Title"] = "Feed";
+}
+
+<h1>Feed for @Model.user.UserName</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Post Id
+            </th>
+            <th>
+                Text
+            </th>
+            <th>
+                Likes
+            </th>
+            <th>
+                ImageUrl
+            </th>
+            <th>
+                CreatedBy
+            </th>
+            <th>
+                PostToCircle
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.posts) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Text)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Likes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostToCircle)
+            </td>
+
+            <td>
+                @Html.ActionLink(
+                    linkText: "Like",
+                    actionName: "Like",
+                    controllerName: "Posts",
+                    routeValues: new
+                    {
+                        id = item.Id
+                    },
+                    htmlAttributes: null
+                    )|
+
+                @Html.ActionLink(
+                    linkText: "Comment",
+                    actionName: "Create",
+                    controllerName: "Comment",
+                    routeValues: new
+                    {
+                        postId = item.Id
+                    },
+                    htmlAttributes: null
+                    )
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

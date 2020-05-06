@@ -14,12 +14,15 @@ namespace SocialNetwork.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly UserService _userService;
+        private readonly PostService _postService;
 
+        ViewAsViewModel ViewAsvm = new ViewAsViewModel();
 
-        public HomeController(ILogger<HomeController> logger, UserService userService)
+        public HomeController(ILogger<HomeController> logger, UserService userService, PostService postService)
         {
             _logger = logger;
             _userService = userService;
+            _postService = postService;
         }
 
         public IActionResult Index()
@@ -114,12 +117,10 @@ namespace SocialNetwork.Controllers
                         c.UserIds = new List<string>();
                     }
                     c.UserIds.Add(user.UserToAddToCircle);
+                    _userService.Update(id, UserToUpdate);
                     return RedirectToAction(nameof(Index));
                 }
             }
-
-            _userService.Update(id, UserToUpdate);
-
             return RedirectToAction(nameof(Index));
         }
 
@@ -148,6 +149,70 @@ namespace SocialNetwork.Controllers
             _userService.Update(id, UserToUpdate);
 
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Feed(string id)
+        {
+            User user = _userService.Get(id);
+            var vm = new SocialNetworkViewModel();
+            var feedvm = new FeedViewModel();
+            feedvm.user = user;
+            feedvm.posts = new List<Post>();
+            vm.posts = _postService.Get();
+
+            foreach (var p in vm.posts)
+            {
+                if (_userService.IsCreaterInFollowingList(id, p.CreatedBy))
+                {
+                    foreach (var userId in p.PCircle.UserIds)
+                    {
+                        if (id == userId)
+                        {
+                            feedvm.posts.Add(p);
+                        }
+                    }
+                }
+                
+            }
+
+            return View(feedvm);
+        }
+
+        public IActionResult Wall(FeedViewModel feedvm)
+        {
+           
+
+            return View(feedvm);
+        }
+
+        public IActionResult ViewAs(string id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ViewAs(string id, string guestId)
+        {
+            ViewAsvm.guestId = guestId;
+            ViewAsvm.wallUserId = id;
+
+            User walluser = _userService.Get(ViewAsvm.wallUserId);
+            var feedvm = new FeedViewModel();
+            var socialvm = new SocialNetworkViewModel();
+            feedvm.user = walluser;
+            feedvm.posts = new List<Post>();
+            socialvm.posts = _postService.Get();
+            foreach (var p in socialvm.posts)
+            {
+                foreach (var userId in p.PCircle.UserIds)
+                {
+                    if ((ViewAsvm.guestId == userId) && (ViewAsvm.wallUserId == p.CreatedBy))
+                    {
+                        feedvm.posts.Add(p);
+                    }
+                }
+            }
+            return View("Wall", feedvm);
         }
     }
 }

@@ -24,6 +24,9 @@ namespace SocialNetwork.Services
         public List<Post> Get() =>
             _posts.Find(post => true).ToList();
 
+        public List<Post> GetFeed(string userId) =>
+            _posts.Find(post => post.Id == userId).ToList();
+
         public Post Get(string id) =>
             _posts.Find<Post>(post => post.Id == id).FirstOrDefault();
 

@@ -28,5 +28,23 @@ namespace SocialNetwork.Services
 
         public void Update(string id, User userIn) =>
             _users.ReplaceOne(u => u.Id == id, userIn);
+
+        public bool IsCreaterInFollowingList(string userId, string createdBy)
+        {
+            var user = _users.Find<User>(user => user.Id == userId).FirstOrDefault();
+            if (user.FollowingUserIds == null)
+            {
+                user.FollowingUserIds = new List<string>();
+            }
+            foreach (var f in user.FollowingUserIds)
+            {
+                if (f == createdBy)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+            
     }
 }

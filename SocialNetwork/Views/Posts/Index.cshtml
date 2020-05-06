@@ -4,11 +4,8 @@
     ViewData["Title"] = "Posts";
 }
 
-<h1>Feed</h1>
+<h1>All posts</h1>
 
-<p>
-    <a asp-action="Create">Create new Post</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -54,9 +51,6 @@
                 <td>
                     @Html.ActionLink("Like", "Like", new { id = item.Id }) |
                     
-
-
-
                     @Html.ActionLink(
                         linkText: "Comment",
                         actionName: "Create",

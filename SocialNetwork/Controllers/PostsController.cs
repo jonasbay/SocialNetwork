@@ -12,11 +12,13 @@ namespace SocialNetwork.Controllers
     public class PostsController : Controller
     {
         private readonly PostService _postService;
+        private readonly UserService _userService;
 
-        public PostsController(PostService postService)
+        public PostsController(PostService postService, UserService userService)
         {
             _postService = postService;
-        }
+            _userService = userService;
+    }
 
         // GET: Posts
         public ActionResult Index()
@@ -26,23 +28,33 @@ namespace SocialNetwork.Controllers
             return View(vm);
         }
 
+        // GET: Posts/Create
+        public ActionResult Create(string createdBy)
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Post post)
+        public IActionResult Create(Post post, string createdBy)
         {
             if (ModelState.IsValid)
             {
+                var user = _userService.Get(createdBy);
+                foreach (var c in user.Circles)
+                {
+                    if (c.Name == post.PostToCircle)
+                    {
+                        post.PCircle = c;
+
+                    }
+                }
+                post.CreatedBy = createdBy;
                 _postService.Create(post);
                 post.Likes = 0;
                 return RedirectToAction(nameof(Index));
             }
             return View(post);
-        }
-
-        // GET: Posts/Create
-        public ActionResult Create()
-        {
-            return View();
         }
 
         public ActionResult Like(string id)
