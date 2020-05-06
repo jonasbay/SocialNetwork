@@ -29,5 +29,7 @@ namespace SocialNetwork.Models
 
         public Circle PCircle { get; set; }
         public string PostToCircle { get; set; }
+
+        public DateTime DateCreated { get; set; }
     }
 }

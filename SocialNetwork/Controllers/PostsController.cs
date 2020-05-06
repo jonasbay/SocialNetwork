@@ -46,10 +46,10 @@ namespace SocialNetwork.Controllers
                     if (c.Name == post.PostToCircle)
                     {
                         post.PCircle = c;
-
                     }
                 }
                 post.CreatedBy = createdBy;
+                post.DateCreated = DateTime.Now;
                 _postService.Create(post);
                 post.Likes = 0;
                 return RedirectToAction(nameof(Index));

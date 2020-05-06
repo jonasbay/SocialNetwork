@@ -3,6 +3,31 @@
     ViewData["Title"] = "Home Page";
 }
 
+<p>
+    @Html.ActionLink(
+        linkText: "See all posts",
+        actionName: "Index",
+        controllerName: "Posts",
+        routeValues: new
+        {
+             
+        },
+        htmlAttributes: null
+        )
+</p>
+<p>
+    @Html.ActionLink(
+        linkText: "See all comments",
+        actionName: "Index",
+        controllerName: "Comment",
+        routeValues: new
+        {
+             
+        },
+        htmlAttributes: null
+        )
+</p>
+
 <div class="text-center">
 <table class="table">
     <thead>
@@ -97,7 +122,7 @@
                     )
                 |
                 @Html.ActionLink(
-                    linkText: "ViewAs",
+                    linkText: "Wall",
                     actionName: "ViewAs",
                     controllerName: "Home",
                     routeValues: new

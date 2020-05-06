@@ -25,9 +25,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.ActionLink("Edit", "EditCircle", new { id = Model.UserId, circleName=item.Name }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "EditCircle", new { id = Model.UserId, circleName=item.Name })
             </td>
         </tr>
 }

@@ -19,6 +19,9 @@
                 Created by
             </th>
             <th>
+                Created
+            </th>
+            <th>
                 Likes
             </th>
             <th>
@@ -43,7 +46,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.CreatedBy)
                 </td>
-                
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Likes)
                 </td>
