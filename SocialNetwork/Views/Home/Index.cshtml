@@ -3,6 +3,8 @@
     ViewData["Title"] = "Home Page";
 }
 
+<h1>Admin page for all users</h1>
+
 <p>
     @Html.ActionLink(
         linkText: "See all posts",
@@ -13,9 +15,7 @@
              
         },
         htmlAttributes: null
-        )
-</p>
-<p>
+        ) - 
     @Html.ActionLink(
         linkText: "See all comments",
         actionName: "Index",
@@ -27,6 +27,7 @@
         htmlAttributes: null
         )
 </p>
+
 
 <div class="text-center">
 <table class="table">

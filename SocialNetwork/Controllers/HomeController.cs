@@ -15,14 +15,16 @@ namespace SocialNetwork.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly UserService _userService;
         private readonly PostService _postService;
+        private readonly CommentService _commentService;
 
         ViewAsViewModel ViewAsvm = new ViewAsViewModel();
 
-        public HomeController(ILogger<HomeController> logger, UserService userService, PostService postService)
+        public HomeController(ILogger<HomeController> logger, UserService userService, PostService postService, CommentService commentService)
         {
             _logger = logger;
             _userService = userService;
             _postService = postService;
+            _commentService = commentService;
         }
 
         public IActionResult Index()
@@ -158,6 +160,7 @@ namespace SocialNetwork.Controllers
             var feedvm = new FeedViewModel();
             feedvm.user = user;
             feedvm.posts = new List<Post>();
+            feedvm.comments = _commentService.Get();
             vm.posts = _postService.Get();
 
             foreach (var p in vm.posts)

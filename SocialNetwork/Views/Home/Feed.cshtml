@@ -23,13 +23,16 @@
                 Likes
             </th>
             <th>
+                Comments
+            </th>
+            <th>
                 ImageUrl
             </th>
             <th>
                 CreatedBy
             </th>
             <th>
-                PostToCircle
+                Circle posted in
             </th>
             <th></th>
         </tr>
@@ -48,6 +51,20 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Likes)
+            </td>
+            <td>
+                @{
+                    int numberOfComments = 0;
+
+                    foreach (var c in Model.comments)
+                    {
+                        if (c.PostId == item.Id)
+                        {
+                            numberOfComments++;
+                        }
+                    }
+                }
+                @numberOfComments
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ImageUrl)

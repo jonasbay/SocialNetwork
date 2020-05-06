@@ -9,5 +9,6 @@ namespace SocialNetwork.Models
     {
         public List<Post> posts { get; set; }
         public User user { get; set; }
+        public List<Comment> comments { get; set; }
     }
 }
